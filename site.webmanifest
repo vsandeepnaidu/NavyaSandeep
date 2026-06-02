@@ -1,0 +1,12 @@
+{
+  "name": "The sky the night you were born",
+  "short_name": "Navya",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#06070c",
+  "background_color": "#06070c",
+  "icons": [
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

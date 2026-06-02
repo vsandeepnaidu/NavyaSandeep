@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  html,body{margin:0;padding:0;}
+  *{box-sizing:border-box;}
+  .card{
+    position:relative;width:1200px;height:630px;overflow:hidden;
+    background:#06070c;color:#ece7db;
+    font-family:"Baskerville","Hoefler Text","Iowan Old Style",Georgia,serif;
+  }
+  .neb{position:absolute;inset:-12%;
+    background:
+      radial-gradient(40% 52% at 22% 24%, rgba(74,96,164,.20), transparent 70%),
+      radial-gradient(46% 56% at 82% 80%, rgba(150,116,66,.16), transparent 72%),
+      radial-gradient(50% 50% at 60% 12%, rgba(48,84,104,.12), transparent 70%);
+    filter:blur(22px);}
+  .vig{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 42%, transparent 50%, rgba(0,0,0,.58));}
+  .stars circle{fill:#cdd6ea;}
+  .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px;}
+  .mark{width:54px;height:54px;margin-bottom:34px;}
+  .kicker{font-size:23px;letter-spacing:.44em;text-transform:uppercase;color:rgba(236,231,219,.52);margin:0 0 28px;padding-left:.44em;}
+  .title{font-size:84px;line-height:1.07;font-weight:400;margin:0;letter-spacing:.004em;}
+  .title em{font-style:italic;
+    background:linear-gradient(177deg,#ecd9a8,#c8a96b 52%,#a8854a);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .url{position:absolute;bottom:48px;left:0;right:0;text-align:center;
+    font-size:23px;letter-spacing:.36em;text-transform:uppercase;color:rgba(236,231,219,.42);padding-left:.36em;}
+</style></head><body>
+  <div class="card">
+    <div class="neb"></div>
+    <svg class="stars" width="1200" height="630">
+      <circle cx="120" cy="70" r="1.6" opacity=".7"/><circle cx="260" cy="130" r="1.1" opacity=".5"/>
+      <circle cx="380" cy="60" r="1.4" opacity=".6"/><circle cx="520" cy="110" r="1.0" opacity=".45"/>
+      <circle cx="700" cy="70" r="1.5" opacity=".65"/><circle cx="860" cy="120" r="1.2" opacity=".5"/>
+      <circle cx="980" cy="60" r="1.7" fill="#ecd9a8" opacity=".8"/><circle cx="1080" cy="150" r="1.1" opacity=".5"/>
+      <circle cx="1140" cy="72" r="1.0" opacity=".45"/>
+      <circle cx="70" cy="300" r="1.3" opacity=".55"/><circle cx="150" cy="420" r="1.1" opacity=".5"/>
+      <circle cx="60" cy="500" r="1.0" opacity=".4"/><circle cx="1130" cy="320" r="1.4" opacity=".6"/>
+      <circle cx="1050" cy="430" r="1.0" fill="#c8a96b" opacity=".6"/><circle cx="1150" cy="500" r="1.2" opacity=".5"/>
+      <circle cx="1090" cy="258" r="1.0" opacity=".45"/>
+      <circle cx="180" cy="560" r="1.5" opacity=".6"/><circle cx="320" cy="600" r="1.1" opacity=".5"/>
+      <circle cx="520" cy="582" r="1.0" opacity=".4"/><circle cx="680" cy="600" r="1.3" fill="#ecd9a8" opacity=".7"/>
+      <circle cx="820" cy="560" r="1.1" opacity=".5"/><circle cx="960" cy="590" r="1.4" opacity=".6"/>
+      <circle cx="1040" cy="560" r="1.0" opacity=".45"/>
+    </svg>
+    <div class="vig"></div>
+    <div class="wrap">
+      <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g" cx="50%" cy="47%" r="52%">
+            <stop offset="0%" stop-color="#c8a96b" stop-opacity="0.55"/>
+            <stop offset="55%" stop-color="#c8a96b" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#c8a96b" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ecd9a8"/><stop offset="55%" stop-color="#c8a96b"/><stop offset="100%" stop-color="#a8854a"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="27" fill="url(#g)"/>
+        <path d="M32 6 L36.8 23.8 L54.5 19 L41.5 32 L54.5 45 L36.8 40.2 L32 58 L27.2 40.2 L9.5 45 L22.5 32 L9.5 19 L27.2 23.8 Z" fill="url(#gold)"/>
+      </svg>
+      <div class="kicker">For Navya</div>
+      <div class="title">The sky the night<br>you were <em>born</em></div>
+    </div>
+    <div class="url">navyasandeep.com</div>
+  </div>
+</body></html>
