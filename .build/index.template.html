@@ -836,15 +836,18 @@
         dc.style.width = window.innerWidth + 'px';
         dc.style.height = window.innerHeight + 'px';
         M = AMP * DPR;                     // spawn margin so edges stay filled when shifted
-        var n = Math.round(Math.min(160, (window.innerWidth*window.innerHeight)/9500));
+        var n = Math.round(Math.min(200, (window.innerWidth*window.innerHeight)/8000));
         pts = [];
-        for (var i=0;i<n;i++) pts.push({
-          x:Math.random()*(W+2*M)-M, y:Math.random()*(H+2*M)-M,
-          r:(Math.random()*0.85+0.3)*DPR,
-          base:Math.random()*0.3+0.05,
-          tw:Math.random()*0.5+0.2, ph:Math.random()*6.283,
-          d:Math.random()*0.8+0.2         // depth: 0.2 far .. 1 near -> parallax weight
-        });
+        for (var i=0;i<n;i++){
+          var d = Math.random()*0.8+0.2;            // 0.2 far .. 1 near
+          pts.push({
+            x:Math.random()*(W+2*M)-M, y:Math.random()*(H+2*M)-M,
+            r:(0.30 + 0.95*d)*DPR,                  // near stars a touch larger (depth cue)
+            base:0.12 + 0.42*d + Math.random()*0.06,// brighter, graded by depth
+            tw:Math.random()*0.5+0.2, ph:Math.random()*6.283,
+            d:d                                     // drives parallax weight + brightness/size
+          });
+        }
       }
       if (!REDUCE){
         window.addEventListener('mousemove', function(e){
