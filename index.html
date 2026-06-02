@@ -187,14 +187,16 @@
     margin-left:calc(var(--ds)*var(--S)/-2);margin-top:calc(var(--ds)*var(--S)/-2);
     --rad:calc(var(--rr)*var(--S));
     z-index:2;
+    display:flex;align-items:center;justify-content:center;
     animation:revolve var(--t) linear infinite;
     animation-delay:var(--delay,0s);
   }
-  .orrery .sat.wide{
-    width:calc(var(--dsw)*var(--S));
-    margin-left:calc(var(--dsw)*var(--S)/-2);
+  .orrery .glyph{
+    font-size:calc(var(--S)*.055);
+    line-height:1;color:var(--ink);
+    text-shadow:0 0 14px rgba(200,169,107,.42),0 0 30px rgba(200,169,107,.16);
+    -webkit-user-select:none;user-select:none;
   }
-  .orrery canvas.orb{animation:none;}
   @keyframes revolve{
     from{transform:rotate(0) translateX(var(--rad)) rotate(0);}
     to{transform:rotate(360deg) translateX(var(--rad)) rotate(-360deg);}
@@ -457,20 +459,22 @@
     <div class="wrap">
       <p class="finale-lead" data-reveal>And all the while, everything keeps turning &mdash;<br>sun and planet, season and star.</p>
 
-      <div class="orrery" data-reveal>
-        <div class="ring" style="--rr:.15"></div>
-        <div class="ring" style="--rr:.21"></div>
-        <div class="ring" style="--rr:.275"></div>
-        <div class="ring" style="--rr:.335"></div>
-        <div class="ring" style="--rr:.395"></div>
-        <div class="ring" style="--rr:.42"></div>
+      <div class="orrery" data-reveal aria-label="The name Sandeep, in orbit around Navya">
+        <div class="ring" style="--rr:.25"></div>
+        <div class="ring" style="--rr:.285"></div>
+        <div class="ring" style="--rr:.32"></div>
+        <div class="ring" style="--rr:.355"></div>
+        <div class="ring" style="--rr:.39"></div>
+        <div class="ring" style="--rr:.425"></div>
+        <div class="ring" style="--rr:.46"></div>
 
-        <div class="sat" style="--rr:.15;  --ds:.05;  --t:18s; --delay:-3s;  --a:35deg"><canvas class="orb" data-planet="mercury" aria-hidden="true"></canvas></div>
-        <div class="sat" style="--rr:.21;  --ds:.066; --t:26s; --delay:-14s; --a:150deg"><canvas class="orb" data-planet="venus" aria-hidden="true"></canvas></div>
-        <div class="sat" style="--rr:.275; --ds:.072; --t:34s; --delay:-25s; --a:255deg"><canvas class="orb" data-planet="earth" aria-hidden="true"></canvas></div>
-        <div class="sat" style="--rr:.335; --ds:.058; --t:44s; --delay:-7s;  --a:95deg"><canvas class="orb" data-planet="mars" aria-hidden="true"></canvas></div>
-        <div class="sat" style="--rr:.395; --ds:.10;  --t:58s; --delay:-40s; --a:200deg"><canvas class="orb" data-planet="jupiter" aria-hidden="true"></canvas></div>
-        <div class="sat wide" style="--rr:.42; --ds:.092; --dsw:.155; --t:76s; --delay:-60s; --a:312deg"><canvas class="orb" data-planet="saturn" aria-hidden="true"></canvas></div>
+        <div class="sat" style="--rr:.25;  --ds:.10; --t:22s; --delay:-2s;  --a:18deg"><span class="glyph">S</span></div>
+        <div class="sat" style="--rr:.285; --ds:.10; --t:31s; --delay:-17s; --a:96deg"><span class="glyph">a</span></div>
+        <div class="sat" style="--rr:.32;  --ds:.10; --t:26s; --delay:-9s;  --a:162deg"><span class="glyph">n</span></div>
+        <div class="sat" style="--rr:.355; --ds:.10; --t:38s; --delay:-24s; --a:236deg"><span class="glyph">d</span></div>
+        <div class="sat" style="--rr:.39;  --ds:.10; --t:33s; --delay:-6s;  --a:300deg"><span class="glyph">e</span></div>
+        <div class="sat" style="--rr:.425; --ds:.10; --t:47s; --delay:-31s; --a:50deg"><span class="glyph">e</span></div>
+        <div class="sat" style="--rr:.46;  --ds:.10; --t:41s; --delay:-15s; --a:128deg"><span class="glyph">p</span></div>
 
         <div class="sun"><span class="sun-name">Navya</span></div>
       </div>
