@@ -174,6 +174,28 @@
     to{transform:rotate(360deg) translateX(var(--rad)) rotate(-360deg);}
   }
 
+  /* since you were born — verified facts */
+  #since{padding:0;display:block;min-height:0;}
+  .since-mv{
+    min-height:88svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:11vh 7vw;text-align:center;
+  }
+  .since-mv .wrap{max-width:37rem;}
+  .since-line{
+    font-size:clamp(1.16rem,2.9vw,1.6rem);
+    line-height:1.62;margin:0 0 1.3em;color:var(--ink);
+  }
+  .since-line:last-child{margin-bottom:0;}
+  .since-turn{
+    font-style:italic;color:var(--dim);
+    font-size:clamp(1.04rem,2.5vw,1.34rem);
+    line-height:1.6;margin:0 0 1.4em;
+  }
+  .since-mv [data-reveal]:nth-child(2){transition-delay:.12s;}
+  .since-mv [data-reveal]:nth-child(3){transition-delay:.26s;}
+  .since-mv [data-reveal]:nth-child(4){transition-delay:.40s;}
+
   /* scroll cue */
   .cue{
     position:absolute;bottom:4.4vh;left:50%;transform:translateX(-50%);
@@ -187,6 +209,42 @@
   #dust{
     position:fixed;inset:0;width:100%;height:100%;
     z-index:-1;pointer-events:none;display:block;
+  }
+
+  /* ---- atmosphere: cinematic surreal-luxury layers ---- */
+  /* a faint deep-cosmic bloom drifting behind the stars */
+  #nebula{
+    position:fixed;inset:-14%;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(38% 34% at 24% 30%, rgba(74,96,164,.11), transparent 70%),
+      radial-gradient(42% 40% at 78% 68%, rgba(150,116,66,.085), transparent 72%),
+      radial-gradient(46% 42% at 62% 16%, rgba(48,84,104,.07), transparent 70%);
+    filter:blur(18px);will-change:transform,translate;
+    animation:nebula 110s ease-in-out infinite alternate;
+  }
+  @keyframes nebula{
+    0%{transform:translate3d(-1.5%,1%,0) scale(1.02);}
+    100%{transform:translate3d(2%,-2%,0) scale(1.12);}
+  }
+  /* film-frame vignette */
+  #vignette{
+    position:fixed;inset:0;z-index:50;pointer-events:none;
+    background:radial-gradient(125% 105% at 50% 40%, transparent 54%, rgba(0,0,0,.5) 100%);
+  }
+  /* fine analog grain (static — no per-frame repaint) */
+  #grain{
+    position:fixed;inset:0;z-index:51;pointer-events:none;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:170px 170px;
+  }
+  /* gold-leaf sheen + glow on the principal gold words only */
+  h1 em, .finale-line em{text-shadow:0 0 22px rgba(200,169,107,.18);}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    h1 em, .finale-line em, .orrery .sun-name{
+      background:linear-gradient(177deg,#ecd9a8 0%,#cdae70 48%,#a8854a 100%);
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
   }
 
   /* the turning — planet moments */
@@ -244,12 +302,16 @@
     .orrery .sun::before{animation:none;opacity:.9;}
     canvas.orb{animation:none;}
     .cue{animation:none;}
+    #nebula{animation:none;}
   }
 </style>
 </head>
 <body>
 
+  <div id="nebula" aria-hidden="true"></div>
   <canvas id="dust" aria-hidden="true"></canvas>
+  <div id="vignette" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
 
   <section id="intro">
     <div class="wrap">
@@ -343,6 +405,28 @@
 
   </section>
 
+  <section id="since">
+
+    <div class="since-mv">
+      <div class="wrap">
+        <p class="kicker" data-reveal>Beyond the planets</p>
+        <p class="since-line" data-reveal>Carried by the Sun, you have ridden some <span class="num">240 billion</span> kilometres around the Milky Way &mdash; and even now the galaxy has barely begun to turn.</p>
+        <p class="since-line" data-reveal>Andromeda, the nearest great galaxy to our own, has drawn about <span class="num">115 billion</span> kilometres nearer &mdash; quietly, all your life, on its way to us.</p>
+        <p class="since-line" data-reveal>And the light of the night you were born is already <span class="num">33 light-years</span> out among the stars &mdash; a widening shell of that one moment, still washing outward.</p>
+      </div>
+    </div>
+
+    <div class="since-mv">
+      <div class="wrap">
+        <p class="since-turn" data-reveal>And nearer than any of that &mdash;</p>
+        <p class="since-line" data-reveal>the Moon has eased about <span class="num">1.25 metres</span> farther from the Earth, and still has never once let go;</p>
+        <p class="since-line" data-reveal>the Sun has risen on you <span class="num" id="c-sunrises">0</span> times;</p>
+        <p class="since-line" data-reveal>and through every one of those days, your heart has beaten more than <span class="num">a billion</span> times.</p>
+      </div>
+    </div>
+
+  </section>
+
   <section id="finale">
     <div class="wrap">
       <p class="finale-lead" data-reveal>And all the while, everything keeps turning &mdash;<br>sun and planet, season and star.</p>
@@ -366,7 +450,7 @@
       </div>
 
       <p class="finale-line" data-reveal>From the day I met you,<br>my whole universe has only ever <em>revolved around you</em>.</p>
-      <p class="wish" data-reveal>Happy birthday, my love.</p>
+      <p class="wish" data-reveal>Happy Birthday Navya</p>
       <p class="signoff" data-reveal>Here's to every orbit still to come. &mdash; Sandeep</p>
     </div>
   </section>
@@ -674,7 +758,8 @@
       'c-mercury': Math.floor(days/87.969),
       'c-venus': Math.floor(days/224.701),
       'c-mars': Math.floor(days/686.980),
-      'c-moon': Math.floor(days/27.32166)
+      'c-moon': Math.floor(days/27.32166),
+      'c-sunrises': Math.round(days)
     };
 
     function animateCount(el, to){
@@ -683,8 +768,8 @@
         if(t0===null) t0=ts;
         var k = Math.min(1,(ts-t0)/dur);
         var e = 1-Math.pow(1-k,3);
-        el.textContent = Math.round(to*e);
-        if(k<1) requestAnimationFrame(step); else el.textContent = to;
+        el.textContent = Math.round(to*e).toLocaleString('en-US');
+        if(k<1) requestAnimationFrame(step); else el.textContent = to.toLocaleString('en-US');
       }
       requestAnimationFrame(step);
     }
@@ -705,6 +790,29 @@
     var reveals = document.querySelectorAll('[data-reveal]');
     for (var r=0;r<reveals.length;r++) io.observe(reveals[r]);
 
+    // Safety net: the IntersectionObserver above is throttled in hidden/idle
+    // tabs, which can leave content stuck invisible. Reveal anything in view
+    // on load/scroll/resize too, so the page can never sit blank.
+    function revealInView(){
+      for (var i=0;i<reveals.length;i++){
+        var el = reveals[i];
+        if (el.classList.contains('in')) continue;
+        var rc = el.getBoundingClientRect();
+        if (rc.top < window.innerHeight*0.92 && rc.bottom > 0){
+          el.classList.add('in');
+          var nums = el.querySelectorAll('.num');
+          for (var n=0;n<nums.length;n++){
+            var id = nums[n].id;
+            if (counts[id]!=null && !nums[n].dataset.done){ nums[n].dataset.done='1'; animateCount(nums[n], counts[id]); }
+          }
+          io.unobserve(el);
+        }
+      }
+    }
+    revealInView();
+    window.addEventListener('load', function(){ setTimeout(revealInView, 300); setTimeout(revealInView, 1200); });
+    window.addEventListener('resize', revealInView);
+
     // pause the sky drift when the chart is well off-screen (save battery)
     var skySec = document.getElementById('sky');
     new IntersectionObserver(function(es){
@@ -718,28 +826,50 @@
     // ====================================================================
     (function dustfield(){
       var dc = document.getElementById('dust'), g = dc.getContext('2d');
-      var pts = [], W = 0, H = 0;
+      var neb = document.getElementById('nebula');
+      var pts = [], W = 0, H = 0, M = 0;
+      var AMP = 13;                       // px of parallax for the nearest dust (gentle)
+      var tx = 0, ty = 0, cx = 0, cy = 0, lnx = 0, lny = 0; // targets + smoothed
       function build(){
         W = dc.width  = Math.round(window.innerWidth  * DPR);
         H = dc.height = Math.round(window.innerHeight * DPR);
         dc.style.width = window.innerWidth + 'px';
         dc.style.height = window.innerHeight + 'px';
+        M = AMP * DPR;                     // spawn margin so edges stay filled when shifted
         var n = Math.round(Math.min(160, (window.innerWidth*window.innerHeight)/9500));
         pts = [];
         for (var i=0;i<n;i++) pts.push({
-          x:Math.random()*W, y:Math.random()*H,
+          x:Math.random()*(W+2*M)-M, y:Math.random()*(H+2*M)-M,
           r:(Math.random()*0.85+0.3)*DPR,
           base:Math.random()*0.3+0.05,
-          tw:Math.random()*0.5+0.2, ph:Math.random()*6.283
+          tw:Math.random()*0.5+0.2, ph:Math.random()*6.283,
+          d:Math.random()*0.8+0.2         // depth: 0.2 far .. 1 near -> parallax weight
         });
       }
+      if (!REDUCE){
+        window.addEventListener('mousemove', function(e){
+          tx = -(e.clientX/window.innerWidth  - 0.5) * 2 * AMP;
+          ty = -(e.clientY/window.innerHeight - 0.5) * 2 * AMP;
+        }, {passive:true});
+        window.addEventListener('deviceorientation', function(e){
+          if (e.gamma==null) return;
+          tx = -Math.max(-1,Math.min(1, e.gamma/30)) * AMP;
+          ty = -Math.max(-1,Math.min(1, (e.beta-45)/30)) * AMP;
+        }, {passive:true});
+      }
       function paint(now){
+        cx += (tx-cx)*0.06; cy += (ty-cy)*0.06;          // smooth, slightly trailing
+        if (neb && (Math.abs(cx-lnx)>0.03 || Math.abs(cy-lny)>0.03)){
+          neb.style.translate = (cx*0.45).toFixed(2)+'px '+(cy*0.45).toFixed(2)+'px';
+          lnx = cx; lny = cy;
+        }
         g.clearRect(0,0,W,H);
         g.fillStyle = '#cdd6ea';
+        var ox = cx*DPR, oy = cy*DPR;
         for (var i=0;i<pts.length;i++){
           var p = pts[i];
           g.globalAlpha = REDUCE ? p.base : p.base*(0.65 + 0.35*Math.sin(now*0.0006*p.tw + p.ph));
-          g.beginPath(); g.arc(p.x,p.y,p.r,0,6.283); g.fill();
+          g.beginPath(); g.arc(p.x + ox*p.d, p.y + oy*p.d, p.r, 0, 6.283); g.fill();
         }
         g.globalAlpha = 1;
       }
@@ -854,10 +984,13 @@
         });
         return;
       }
-      var last = performance.now();
+      var last = performance.now(), acc = 0;
       (function loop(now){
-        var dt = Math.min(0.05,(now-last)/1000); last = now;
-        if (!document.hidden) for (var i=0;i<orbs.length;i++) if (orbs[i].visible) render(orbs[i], dt);
+        var dt = Math.min(0.05,(now-last)/1000); last = now; acc += dt;
+        if (!document.hidden && acc >= 0.0333){          // ~30fps cap — slow spin needs no more
+          for (var i=0;i<orbs.length;i++) if (orbs[i].visible) render(orbs[i], acc);
+          acc = 0;
+        }
         requestAnimationFrame(loop);
       })(performance.now());
     })();
